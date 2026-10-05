@@ -14,11 +14,8 @@ import (
 
 	"github.com/bookmark-project-learn/user-service/internal/config"
 	"github.com/bookmark-project-learn/user-service/internal/connection"
-	health_check_handler "github.com/bookmark-project-learn/user-service/internal/handler/health_check"
 	user_handler "github.com/bookmark-project-learn/user-service/internal/handler/user"
-	health_check_repository "github.com/bookmark-project-learn/user-service/internal/repository/health_check"
 	userRepository "github.com/bookmark-project-learn/user-service/internal/repository/user"
-	health_check_service "github.com/bookmark-project-learn/user-service/internal/service/health_check"
 	user_service "github.com/bookmark-project-learn/user-service/internal/service/user"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -72,37 +69,28 @@ func (e *engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 }
 
 type handlers struct {
-	healthCheck health_check_handler.HealthCheck
-	user        user_handler.UserHandler
-	config      *config.Config
+	user   user_handler.UserHandler
+	config *config.Config
 }
 
 func (e *engine) InitHandlers(cfg *config.Config) handlers {
-	serviceName := cfg.ServiceName
-	instanceID := cfg.InstanceID
-	redisClient := e.connector.GetRedisClient()
+
 	sqlDB := e.connector.GetSqlDB()
 	// create helper
 	hasher := hasher.NewHasher()
 	// create repository
-	healthCheckRepository := health_check_repository.NewPing(redisClient)
-
 	userRepository := userRepository.NewUserRepository(sqlDB)
 	// create service
-	healthCheckService := health_check_service.NewHealthCheck(serviceName, instanceID, healthCheckRepository)
 	userService := user_service.NewUserService(userRepository, hasher, e.jwtGenerator)
 
 	// create handler
-	healthCheckHandler := health_check_handler.NewHealthCheck(healthCheckService)
 	userHandler := user_handler.NewUserHandler(userService)
 
-	return handlers{healthCheckHandler, userHandler, cfg}
+	return handlers{userHandler, cfg}
 }
 
 func (e *engine) initRoutes(cfg *config.Config) {
 	allHandlers := e.InitHandlers(cfg)
-
-	e.app.GET("/health-check", allHandlers.healthCheck.Ping)
 
 	docs.SwaggerInfo.BasePath = allHandlers.config.BasePath
 	e.app.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

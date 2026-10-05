@@ -39,7 +39,7 @@ func setupEngineWithDB(t *testing.T) (api.Engine, *jwt_pkg.MockJwt, connection.D
 
 	// engine
 	r := gin.New()
-	cfg := &config.Config{AppPort: "8080", BasePath: "/", ServiceName: "testsvc"}
+	cfg := &config.Config{AppPort: "8080", BasePath: "/"}
 	eng := api.NewEngine(&api.EnginOpt{App: r, Cfg: cfg, Connector: conn, JwtGenerator: mockJwt.JwtGenarate, JwtValidator: mockJwt.JwtValidate})
 	return eng, mockJwt, conn, r
 }

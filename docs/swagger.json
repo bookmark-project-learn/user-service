@@ -8,298 +8,13 @@
     },
     "basePath": "/",
     "paths": {
-        "/health-check": {
-            "get": {
-                "description": "Check the health of the API",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "health_check"
-                ],
-                "summary": "Health check endpoint",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/internal_handler_health_check.HealthResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/bookmarks": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "bookmark"
-                ],
-                "summary": "Get bookmarks",
-                "parameters": [
-                    {
-                        "minimum": 1,
-                        "type": "integer",
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "minimum": 1,
-                        "type": "integer",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "sort",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.PaginatedResponse-github_com_homework_lab_internal_models_dto_api_bookmark_BookmarkInfo"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.MessageResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.MessageResponse"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ]
-            },
-            "post": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "bookmark"
-                ],
-                "summary": "Create bookmark",
-                "parameters": [
-                    {
-                        "description": "Input required",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api_bookmark.NewBookmarkRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.Response-github_com_homework_lab_internal_models_dto_api_bookmark_BookmarkInfo"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.Response-github_com_homework_lab_internal_models_dto_api_bookmark_BookmarkInfo"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.Response-github_com_homework_lab_internal_models_dto_api_bookmark_BookmarkInfo"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/v1/bookmarks/{id}": {
-            "put": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "bookmark"
-                ],
-                "summary": "Update bookmark",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Bookmark id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Input required",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api_bookmark.UpdateBookmarkRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.MessageResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.MessageResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.MessageResponse"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ]
-            },
-            "delete": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "bookmark"
-                ],
-                "summary": "Delete bookmark",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Bookmark id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.MessageResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.MessageResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.MessageResponse"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/v1/links/redirect/{code}": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "link"
-                ],
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Shorten code",
-                        "name": "code",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "302": {
-                        "description": "Found"
-                    }
-                }
-            }
-        },
-        "/v1/links/shorten": {
-            "post": {
-                "description": "Generate shorten url based on original url that last upto 7 days",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "link"
-                ],
-                "summary": "Generate shorten url based on original url that last upto 7 days",
-                "parameters": [
-                    {
-                        "description": "Input required",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/internal_handler_shorten.shortenInputBody"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/internal_handler_shorten.shortenResMessage"
-                        }
-                    }
-                }
-            }
-        },
         "/v1/users": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Get user info",
                 "consumes": [
                     "application/json"
@@ -315,29 +30,29 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.Response-github_com_homework_lab_internal_models_dto_api_user_UserInfo"
+                            "$ref": "#/definitions/github_com_bookmark-project-learn_user-service_internal_models_dto_api.Response-github_com_bookmark-project-learn_user-service_internal_models_dto_api_user_UserInfo"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.Response-any"
+                            "$ref": "#/definitions/github_com_bookmark-project-learn_user-service_internal_models_dto_api.Response-any"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.Response-any"
+                            "$ref": "#/definitions/github_com_bookmark-project-learn_user-service_internal_models_dto_api.Response-any"
                         }
                     }
-                },
+                }
+            },
+            "put": {
                 "security": [
                     {
                         "BearerAuth": []
                     }
-                ]
-            },
-            "put": {
+                ],
                 "description": "Edit current user",
                 "consumes": [
                     "application/json"
@@ -356,7 +71,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api_user.UpdateUserInput"
+                            "$ref": "#/definitions/github_com_bookmark-project-learn_user-service_internal_models_dto_api_user.UpdateUserInput"
                         }
                     }
                 ],
@@ -379,12 +94,7 @@
                             "$ref": "#/definitions/internal_handler_user.updateUserReposonse"
                         }
                     }
-                },
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ]
+                }
             }
         },
         "/v1/users/login": {
@@ -407,7 +117,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api_user.UserLogin"
+                            "$ref": "#/definitions/github_com_bookmark-project-learn_user-service_internal_models_dto_api_user.UserLogin"
                         }
                     }
                 ],
@@ -453,7 +163,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api_user.UserRegister"
+                            "$ref": "#/definitions/github_com_bookmark-project-learn_user-service_internal_models_dto_api_user.UserRegister"
                         }
                     }
                 ],
@@ -461,19 +171,19 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.Response-github_com_homework_lab_internal_models_dto_api_user_UserInfo"
+                            "$ref": "#/definitions/github_com_bookmark-project-learn_user-service_internal_models_dto_api.Response-github_com_bookmark-project-learn_user-service_internal_models_dto_api_user_UserInfo"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.Response-any"
+                            "$ref": "#/definitions/github_com_bookmark-project-learn_user-service_internal_models_dto_api.Response-any"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.Response-any"
+                            "$ref": "#/definitions/github_com_bookmark-project-learn_user-service_internal_models_dto_api.Response-any"
                         }
                     }
                 }
@@ -481,43 +191,7 @@
         }
     },
     "definitions": {
-        "github_com_homework_lab_internal_models_dto_api.MessageResponse": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_homework_lab_internal_models_dto_api.PaginatedResponse-github_com_homework_lab_internal_models_dto_api_bookmark_BookmarkInfo": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api_bookmark.BookmarkInfo"
-                    }
-                },
-                "pagination": {
-                    "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api.Pagination"
-                }
-            }
-        },
-        "github_com_homework_lab_internal_models_dto_api.Pagination": {
-            "type": "object",
-            "properties": {
-                "limit": {
-                    "type": "integer"
-                },
-                "page": {
-                    "type": "integer"
-                },
-                "total": {
-                    "type": "integer"
-                }
-            }
-        },
-        "github_com_homework_lab_internal_models_dto_api.Response-any": {
+        "github_com_bookmark-project-learn_user-service_internal_models_dto_api.Response-any": {
             "type": "object",
             "properties": {
                 "data": {},
@@ -526,80 +200,18 @@
                 }
             }
         },
-        "github_com_homework_lab_internal_models_dto_api.Response-github_com_homework_lab_internal_models_dto_api_bookmark_BookmarkInfo": {
+        "github_com_bookmark-project-learn_user-service_internal_models_dto_api.Response-github_com_bookmark-project-learn_user-service_internal_models_dto_api_user_UserInfo": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api_bookmark.BookmarkInfo"
+                    "$ref": "#/definitions/github_com_bookmark-project-learn_user-service_internal_models_dto_api_user.UserInfo"
                 },
                 "message": {
                     "type": "string"
                 }
             }
         },
-        "github_com_homework_lab_internal_models_dto_api.Response-github_com_homework_lab_internal_models_dto_api_user_UserInfo": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/github_com_homework_lab_internal_models_dto_api_user.UserInfo"
-                },
-                "message": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_homework_lab_internal_models_dto_api_bookmark.BookmarkInfo": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_homework_lab_internal_models_dto_api_bookmark.NewBookmarkRequest": {
-            "type": "object",
-            "required": [
-                "url"
-            ],
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_homework_lab_internal_models_dto_api_bookmark.UpdateBookmarkRequest": {
-            "type": "object",
-            "required": [
-                "url"
-            ],
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_homework_lab_internal_models_dto_api_user.UpdateUserInput": {
+        "github_com_bookmark-project-learn_user-service_internal_models_dto_api_user.UpdateUserInput": {
             "type": "object",
             "properties": {
                 "password": {
@@ -610,7 +222,7 @@
                 }
             }
         },
-        "github_com_homework_lab_internal_models_dto_api_user.UserInfo": {
+        "github_com_bookmark-project-learn_user-service_internal_models_dto_api_user.UserInfo": {
             "type": "object",
             "properties": {
                 "created_at": {
@@ -633,7 +245,7 @@
                 }
             }
         },
-        "github_com_homework_lab_internal_models_dto_api_user.UserLogin": {
+        "github_com_bookmark-project-learn_user-service_internal_models_dto_api_user.UserLogin": {
             "type": "object",
             "required": [
                 "username"
@@ -648,7 +260,7 @@
                 }
             }
         },
-        "github_com_homework_lab_internal_models_dto_api_user.UserRegister": {
+        "github_com_bookmark-project-learn_user-service_internal_models_dto_api_user.UserRegister": {
             "type": "object",
             "required": [
                 "display_name",
@@ -666,47 +278,6 @@
                     "minLength": 8
                 },
                 "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "internal_handler_health_check.HealthResponse": {
-            "type": "object",
-            "properties": {
-                "instance_id": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "service_name": {
-                    "type": "string"
-                }
-            }
-        },
-        "internal_handler_shorten.shortenInputBody": {
-            "type": "object",
-            "required": [
-                "exp",
-                "url"
-            ],
-            "properties": {
-                "exp": {
-                    "type": "integer",
-                    "maximum": 604800
-                },
-                "url": {
-                    "type": "string"
-                }
-            }
-        },
-        "internal_handler_shorten.shortenResMessage": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
                     "type": "string"
                 }
             }

@@ -35,9 +35,7 @@ func TestService_Register(t *testing.T) {
 			},
 			expectedStatusCode: http.StatusOK,
 			configTest: &config.Config{
-				AppPort:     "8080",
-				ServiceName: "app_service",
-				InstanceID:  "instance_01",
+				AppPort: "8080",
 			},
 		},
 	}
