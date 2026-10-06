@@ -16,9 +16,6 @@ func CreateApi() api.Engine {
 		panic("Failed to load config: " + err.Error())
 	}
 
-	// create redis client
-	rdClient := CreateRedisClient()
-
 	// create SQL client
 	sqlClient := CreateSqlClient()
 
@@ -30,7 +27,7 @@ func CreateApi() api.Engine {
 	}
 
 	// connector
-	connector := connection.NewDBConnector(rdClient, sqlClient)
+	connector := connection.NewDBConnector(sqlClient)
 	jwtGenerator, jwtValidator := CreateJwtProvider()
 	apiEngine := api.NewEngine(&api.EnginOpt{
 		App:          gin.New(),

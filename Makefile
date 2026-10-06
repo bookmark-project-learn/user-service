@@ -46,7 +46,7 @@ docker-up:
 rebuild:
 	docker compose -f deployment/docker-compose.yml build
 
-IMG_NAME=dungi3/golang-learn-bookmark_service
+IMG_NAME=tqdung1234/bookmarks-user-service
 GIT_TAG := $(shell git describe --tags --exact-match --abbrev=0 2>/dev/null)
 IMG_TAG := latest
 ifneq ($(GIT_TAG),)
@@ -65,13 +65,13 @@ generated-key:
 
 # Region: Local build
 docker-local-build: 
-	docker build -f deployment/Dockerfile -t bookmark_service:latest .
+	docker build -f deployment/Dockerfile -t user_service:latest .
 
 docker-local-dev: docker-build
-	docker compose -f deployment/docker-compose.yml up -d --remove-orphans bookmark_service
+	docker compose -f deployment/docker-compose.yml up -d --remove-orphans user_service
 
 docker-local-stop:
-	docker compose -f .\deployment\docker-compose.yml down --remove-orphans bookmark_service
+	docker compose -f .\deployment\docker-compose.yml down --remove-orphans user_service
 
 NEW_MIGRATION_NAME:=override_new_migration_name
 atlas-rehash:

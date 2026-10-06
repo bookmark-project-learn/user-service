@@ -32,7 +32,7 @@ func setupEngineWithDB(t *testing.T) (api.Engine, *jwt_pkg.MockJwt, connection.D
 	}
 
 	// connector
-	conn := connection.NewDBConnector(nil, db)
+	conn := connection.NewDBConnector(db)
 
 	// jwt mock
 	mockJwt := jwt_pkg.NewMockJwt()
