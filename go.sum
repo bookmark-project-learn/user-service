@@ -61,6 +61,8 @@ github.com/bookmark-project-learn/bookmark-common-libs v0.0.1-alpha1 h1:x2bmEdp8
 github.com/bookmark-project-learn/bookmark-common-libs v0.0.1-alpha1/go.mod h1:diZEPrM0gkilkaWsnyJcT017E99FHp+zzThaXl2pG2w=
 github.com/bookmark-project-learn/bookmark-common-libs v0.0.1 h1:i6SSUo/Htom7xDUNa/hx0OrePOEdHaDtBt6SwOyNEls=
 github.com/bookmark-project-learn/bookmark-common-libs v0.0.1/go.mod h1:diZEPrM0gkilkaWsnyJcT017E99FHp+zzThaXl2pG2w=
+github.com/bookmark-project-learn/bookmark-common-libs v0.0.2-beta.1 h1:4PPHe5V7p15/ZqSHz1AbX0kpSGvEUw0DkyDKoO5DwOI=
+github.com/bookmark-project-learn/bookmark-common-libs v0.0.2-beta.1/go.mod h1:diZEPrM0gkilkaWsnyJcT017E99FHp+zzThaXl2pG2w=
 github.com/bsm/ginkgo/v2 v2.12.0 h1:Ny8MWAHyOepLGlLKYmXG4IEkioBysk6GpaRTLC8zwWs=
 github.com/bsm/ginkgo/v2 v2.12.0/go.mod h1:SwYbGRRDovPVboqFv0tPTcG1sN61LM1Z4ARdbAV9g4c=
 github.com/bsm/gomega v1.27.10 h1:yeMWxP2pV2fG3FgAODIY8EiRE3dy0aeFYt4l7wh6yKA=

@@ -3,7 +3,7 @@ package user_handler
 import (
 	"net/http"
 
-	"github.com/bookmark-project-learn/user-service/internal/handler/authorization"
+	request_ultils "github.com/bookmark-project-learn/bookmark-common-libs/pkg/request_ultils"
 	"github.com/bookmark-project-learn/user-service/internal/models/dto/api"
 	userModel "github.com/bookmark-project-learn/user-service/internal/models/dto/api/user"
 	user_service "github.com/bookmark-project-learn/user-service/internal/service/user"
@@ -23,7 +23,7 @@ import (
 // @Security BearerAuth
 func (u *userHandler) GetUserInfo(c *gin.Context) {
 
-	userId, err := authorization.GetSubjectFromClaims(c)
+	userId, err := request_ultils.GetSubjectFromClaims(c)
 
 	apiResponse := &api.Response[userModel.UserInfo]{}
 	if err != nil {

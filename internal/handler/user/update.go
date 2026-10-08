@@ -3,7 +3,7 @@ package user_handler
 import (
 	"net/http"
 
-	"github.com/bookmark-project-learn/user-service/internal/handler/authorization"
+	"github.com/bookmark-project-learn/bookmark-common-libs/pkg/request_ultils"
 	userModel "github.com/bookmark-project-learn/user-service/internal/models/dto/api/user"
 	"github.com/gin-gonic/gin"
 )
@@ -28,7 +28,7 @@ func (u *userHandler) UpdateUserInfo(c *gin.Context) {
 	request := &userModel.UpdateUserInput{}
 	c.ShouldBindJSON(request)
 	response := &updateUserReposonse{Message: "Edit current user successfully"}
-	userId, err := authorization.GetSubjectFromClaims(c)
+	userId, err := request_ultils.GetSubjectFromClaims(c)
 	if err != nil {
 		response.Message = err.Error()
 		c.JSON(http.StatusBadRequest, response)
