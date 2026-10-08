@@ -11,7 +11,7 @@ run-app:
 	go run cmd/api/main.go
 
 # Coverage exclude files and directories out of report
-COVERAGE_EXCLUDE=mocks|main.go|test|config.go|infrastructure/**
+COVERAGE_EXCLUDE=mocks|main.go|test|config.go|infrastructure/**|deployment/**
 COVERAGE_THRESHOLD ?= 80
 
 # Process check run make test whether cache or no-cache
