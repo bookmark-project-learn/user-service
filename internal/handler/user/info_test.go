@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/bookmark-project-learn/user-service/internal/handler/authorization"
+	request_ultils "github.com/bookmark-project-learn/bookmark-common-libs/pkg/request_ultils"
 	userModel "github.com/bookmark-project-learn/user-service/internal/models/dto/api/user"
 	user_service "github.com/bookmark-project-learn/user-service/internal/service/user"
 	service_mocks "github.com/bookmark-project-learn/user-service/internal/service/user/mocks"
@@ -29,7 +29,7 @@ func TestHandler_GetUserInfo(t *testing.T) {
 			},
 			expect: func(t *testing.T, rec *httptest.ResponseRecorder) {
 				assert.Equal(t, http.StatusBadRequest, rec.Code)
-				assert.Contains(t, rec.Body.String(), authorization.ClaimsNotFound.Error())
+				assert.Contains(t, rec.Body.String(), request_ultils.ClaimsNotFound.Error())
 			},
 		},
 		{
@@ -41,7 +41,7 @@ func TestHandler_GetUserInfo(t *testing.T) {
 			},
 			expect: func(t *testing.T, rec *httptest.ResponseRecorder) {
 				assert.Equal(t, http.StatusBadRequest, rec.Code)
-				assert.Contains(t, rec.Body.String(), authorization.ErrorExtractClaims.Error())
+				assert.Contains(t, rec.Body.String(), request_ultils.ErrorExtractClaims.Error())
 			},
 		},
 		{
