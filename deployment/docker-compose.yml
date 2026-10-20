@@ -28,3 +28,6 @@ services:
       - 8800:8080
     env_file:
       - ../.env
+    volumes:
+      - ../privatekey.pem:/app/privatekey.pem
+      - ../publickey.pem:/app/publickey.pem
